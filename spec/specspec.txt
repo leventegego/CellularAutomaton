@@ -1,0 +1,10 @@
+
+Feladat rövid szöveges ismertetése (körülbelül fél-egy A4-es oldal terjedelem), ami a feladatot nem ismerő számára
+összefoglalja a lényeget. Ismert feladat (pl Pacman vagy tetris) esetén is szöveges ismertetés.
+Use-case-ek felsorolása és kifejtése (milyen funkciókat és hogyan ér el a felhasználó).
+Megoldási ötlet vázlatos ismertetése, amely többek között felsorolja az alkalmazott technológiai megoldásokat,
+bemutatja a tervezett fájlformátumokat, stb. Kerüljük a "majd kitalálom implementáció közben" jellegű specifikációt.
+
+A feladat megoldása során a beadott specifikációtól el lehet térni, de ezt a laborvezetővel egyeztetni kell.
+A specifikációt PDF formában kell feltölteni a Jportára. A házifeladat elkészítésének ütemezése a tárgy honlapján megtalálható.
+

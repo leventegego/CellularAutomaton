@@ -1,0 +1,162 @@
+@startuml CellularAutomaton
+
+skinparam ClassBackgroundColor LightYellow
+skinparam ClassAttributeIconSize 0
+
+package simulation
+{
+
+    class Cell <<Serializable>>
+    {
+
+        - alive : boolean
+        - aliveNext : boolean
+
+        + Cell()
+
+        + update()
+        + setAlive(b : boolean)
+        + setNext(b : boolean)
+    }
+
+    class Grid <<Serializable>>
+    {
+        - size : int
+
+        + at(p : Vector2) : Cell
+        + resize(size_ : int)
+        + iterate(manipulator : GridManipulator)
+    }
+
+    class Ruleset <<Serializable>>
+    {
+        + Ruleset (ruleString : String)
+    }
+
+    class Updater
+    {
+
+    }
+
+    class Clearer
+    {
+
+    }
+
+    class Randomizer
+    {
+
+    }
+
+    Interface GridDisplay
+    {
+        + display(grid: Grid)
+    }
+
+    Interface GridManipulator
+    {
+        + {abstract} apply(grid : Grid, pos : Vector2)
+    }
+
+
+    class Simulator
+    {
+        - msPerTick : int
+
+        - pauseFlag : boolean
+        - stopFlag : boolean
+
+        + isPaused() : boolean
+        + setPaused()
+        
+        + stopSimulation()
+        + run()
+    }
+
+    Grid "1" *-- "0..*" Cell
+
+    Ruleset ..|> GridManipulator
+    Updater ..|> GridManipulator
+    Clearer ..|> GridManipulator
+    Randomizer ..|> GridManipulator
+
+    Simulator --> GridDisplay
+    Simulator "1" --> "0..*" GridManipulator
+    Simulator --> Grid
+}
+
+package simulationWindow
+{
+    class SimulationWindow
+    {
+        + SimulationWindow()
+        + SimulationWindow(fileName : String)
+
+        - init()
+        - reset()
+        - enableControls()
+        
+        + setPaused(p : boolean)
+        + getAlive(gridPos : Vector2) : boolean
+        + setAlive(gridPos : Vector2, boolean alive)
+        + resize(newSize : int)
+        + save(fileName : String)
+        + load(fileName : String)
+    }
+
+    class DisplayPanel
+    {
+
+    }
+    
+    class FilePanel
+    {
+        - fileNameField : JTextField
+        - saveButton : JButton
+        - loadButton : JButton
+    }
+
+    class GridEditPanel
+    {
+        - resetButton : JButton
+        - randomizeButton : JButton
+        - gridSizeLabel : JLabel
+        - gridSizeSpinner : JSpinner
+    }
+
+    class RuleInputPanel
+    {
+        - ruleInput : JTextField
+        - setRuleButton : JButton
+    }
+
+    class SimulationPanel
+    {
+        - pauseButton : JButton
+        - stepButton : JButton
+    }
+
+    SimulationWindow *-- DisplayPanel
+    SimulationWindow *-- FilePanel
+    SimulationWindow *-- GridEditPanel
+    SimulationWindow *-- RuleInputPanel
+    SimulationWindow *-- SimulationPanel
+
+    SimulationWindow *-- Simulator
+    SimulationWindow *-- Ruleset
+    SimulationWindow *-- Grid
+
+    DisplayPanel ..|> GridDisplay
+}
+
+package mainPackage
+{
+    class MenuWindow
+    {
+
+    }
+
+    MenuWindow --> SimulationWindow
+}
+
+@enduml
