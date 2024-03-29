@@ -21,6 +21,14 @@ szomszéd esetén születik meg egy halott cella. Az S (survive) után következ
 túlélést jelentő számok. (A példában 3 élő szomszédnál a halott cella megszületik és 2 vagy 3 élő
 szomszédnál az élő cella életben marad, különben meghal.)
 
+# Buildelés és futtatás
+
+A buildeléshez JDK és Apache Ant szükséges. Fontosabb Ant targetek:
+
+- `ant jar`: futtatható jar létrehozása
+- `ant doc`: javadoc létrehozása
+- `ant run`: buildelés és futtatás
+
 # A program funkciói
 
 A program képes a szimulációt valós időben futtatni, a különböző szabályrendszereket alkalmazni, a
@@ -32,3 +40,6 @@ láthatjuk, mellette pedig a vezérlő komponenseket. Ezekkel lehet a szimuláci
 a sebességet állítani, a szabályrendszert és a tábla méretét módosítani. Az állást lehet törölni és
 randomizálni. Menteni és betölteni is lehet innen. Az egyes cellák állapotát rájuk kattintva tudjuk
 kapcsolni. Ezeket a műveleteket csak akkor végezhetjük el, ha a szimulációt megállítottuk.
+
+A demos könyvtárban elérhető néhány a programhoz előre elkészített demonstráció. Ezeket a mentésekhez
+hasonlóan be lehet tölteni.

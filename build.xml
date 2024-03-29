@@ -50,7 +50,7 @@
 
 
     <target name="doc">
-        <javadoc sourcepath="${src}" destdir="${doc}">
+        <javadoc sourcepath="${src}" destdir="${doc}" additionalparam="-Xdoclint:none">
             <classpath refid="classpath"/>
         </javadoc>
     </target>
