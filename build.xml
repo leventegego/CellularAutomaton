@@ -1,44 +1,70 @@
 
 <project name="CellularAutomaton" basedir="." default="main">
 
-    <property name="src.dir"     value="src"/>
-    <property name="lib.dir"     value="lib"/>
-    <property name="classes.dir" value="classes"/>
-    <property name="jar.dir"     value="jar"/>
-    <property name="main-class"  value="mainPackage.Main"/>
+    <property name="src"  value="src"/>
+    <property name="lib"  value="lib"/>
+    <property name="bin"  value="bin"/>
+    <property name="jar"  value="jar"/>
+    <property name="doc"  value="doc"/>
+    <property name="main" value="mainPackage.Main"/>
+
+    <path id="classpath">
+        <fileset dir="${lib}">
+            <include name="**/*.jar" />
+        </fileset>
+        <pathelement location="${src}"/>
+        <pathelement location="${bin}"/>
+    </path>
 
 
 
     <target name="compile">
-        <mkdir dir="${classes.dir}"/>
-        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}">
-            <classpath>
-                <fileset dir="${lib.dir}">
-                  <include name="**/*.jar" />
-               </fileset>
-            </classpath>
+        <mkdir dir="${bin}"/>
+        <javac includeantruntime="false" srcdir="${src}" destdir="${bin}">
+            <classpath refid="classpath"/>
         </javac>
     </target>
 
 
     <target name="jar" depends="compile">
-        <mkdir dir="${jar.dir}"/>
-        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+        <mkdir dir="${jar}"/>
+        <jar destfile="${jar}/${ant.project.name}.jar" basedir="${bin}">
             <manifest>
-                <attribute name="Main-Class" value="${main-class}"/>
+                <attribute name="Main-Class" value="${main}"/>
             </manifest>
         </jar>
     </target>
 
 
+    <target name="test" depends="compile">
+        <junit>
+            <classpath refid="classpath"/>
+            <batchtest>
+                <fileset dir="${src}">
+                    <include name="test/*.java"/>
+                </fileset>
+            </batchtest>
+            <formatter type="brief" usefile="false"/>
+        </junit>
+    </target>
+
+
+    <target name="doc">
+        <javadoc sourcepath="${src}" destdir="${doc}">
+            <classpath refid="classpath"/>
+        </javadoc>
+    </target>
+
+
     <target name="run" depends="jar">
-        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+        <java jar="${jar}/${ant.project.name}.jar" fork="true"/>
     </target>
 
 
     <target name="clean">
-        <delete dir="${classes.dir}"/>
-        <delete dir="${jar.dir}"/>
+        <delete dir="${bin}"/>
+        <delete dir="${jar}"/>
+        <delete dir="${doc}"/>
     </target>
 
 </project>
