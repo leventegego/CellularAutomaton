@@ -4,7 +4,7 @@
 A program célja a John Conway-féle sejtautomata játék különböző variációinak szimulálása, a
 szimuláció grafikus megjelenítése.
 
-# A játék
+## A játék
 
 A szimuláció egy négyzet alakú rácson történik. A cellák minden iterációban "élő" vagy "halott"
 állapotban vannak. A következő iterációbeli állapotuk az élő szomszédjaik száma és a saját állapotuk
@@ -21,7 +21,7 @@ szomszéd esetén születik meg egy halott cella. Az S (survive) után következ
 túlélést jelentő számok. (A példában 3 élő szomszédnál a halott cella megszületik és 2 vagy 3 élő
 szomszédnál az élő cella életben marad, különben meghal.)
 
-# Buildelés és futtatás
+## Buildelés és futtatás
 
 A buildeléshez JDK és Apache Ant szükséges. Fontosabb Ant targetek:
 
@@ -29,7 +29,7 @@ A buildeléshez JDK és Apache Ant szükséges. Fontosabb Ant targetek:
 - `ant doc`: javadoc létrehozása
 - `ant run`: buildelés és futtatás
 
-# A program funkciói
+## A program funkciói
 
 A program képes a szimulációt valós időben futtatni, a különböző szabályrendszereket alkalmazni, a
 táblát módosítani. A tábla állását és a szabályrendszert fájlba lehet menteni, onnan be lehet tölteni.
@@ -43,3 +43,28 @@ kapcsolni. Ezeket a műveleteket csak akkor végezhetjük el, ha a szimulációt
 
 A demos könyvtárban elérhető néhány a programhoz előre elkészített demonstráció. Ezeket a mentésekhez
 hasonlóan be lehet tölteni.
+
+
+## Példák
+
+
+
+<img src="./res/glider-gun.png" width="700" />
+
+*"Glider gun" konstrukcio az eredeti szabályrendszerben.*
+
+<img src="./res/seeds.png" width="700" />
+
+*Növekvő minta a "Seeds" szabályrendszerben.*
+
+<img src="./res/flakes.png" width="700" />
+
+*Növekvő "jégkristály" a "snowflakes" szabályrendszerben.*
+
+<img src="./res/replicator.png" width="700" />
+
+*Önmagát sokszorozó "Replicator" minta*
+
+
+
+
